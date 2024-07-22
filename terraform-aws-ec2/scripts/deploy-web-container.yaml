@@ -1,0 +1,10 @@
+#cloud-config
+
+package_update: true
+package_upgrade: true
+packages:
+  - docker
+
+runcmd:
+  - systemctl enable --now docker
+  - docker container run --name web --publish 8080:80 --detach docker.io/nginxdemos/hello
